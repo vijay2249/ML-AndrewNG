@@ -30,9 +30,7 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-[, p] = max(X*all_theta', [], 2);
+[v, p] = max(X*all_theta', [], 2);
 %X*all_theta' => gives the prob matrix
 % the max element in each row represents which class the input goes to
 

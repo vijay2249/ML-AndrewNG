@@ -37,7 +37,7 @@ a3 = sigmoid(a2*Theta2');
 
 %output -> max prob value -> represents the category the element belong to
 
-[,p] = max(a3, [], 2);
+[v,p] = max(a3, [], 2);
 
 
 
