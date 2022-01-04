@@ -63,17 +63,47 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+%==================  neural network forward propagation single layer =====
+%
+%s = sigmoid(X*theta);
+%reg = (lambda/(2*m))*sum(theta(2:end).^2);
+%J = (1/m)*sum((-y.*log(s))-((1-y).*(log(1-s)))) + reg;
+%
+%grad(1) = (1/m)*(X(:,1)'*(s-y));
+%grad(2:end) = (1/m)*(X(:,2:end)'*(s-y))+(lambda/m)*theta(2:end);
+%
+%
+X = [ones(m,1) X];
+% ======= forward propagation algorithm implementation
+a1 = X;
+a2 = sigmoid(a1*Theta1');
+a2 = [ones(size(a2,1),1), a2];
+a3 = sigmoid(a2*Theta2');
+s = a3;  % h(x)
 
+% y matrix to vector of probability(exactly ones and zeros)
+vy = (1:num_labels) == y;
 
+% cost function without regularization
+J = (1/m)*sum((-vy.*log(s))-((1-vy).*(log(1-s))));
 
+% =========== back propagation implementation and calculating regularization term in cost function
 
+% move forward
+A1 = X;
+A2 = sigmoid(A1*Theta1');
+A2 = [ones(size(A2,1),1), A2];
+Z2 = A2*Theta2';
+A3 = sigmoid(Z2);
+s = A3;  % h(x)
+VY = (1:num_labels) == y;
+% get the differences
+D3 = A3 - VY;
+D2 = (D3*Theta2).*[ones(size(Z2, 1),1) sigmoidGradient(Z2)];
+D2 = D2(:, 2:end);
 
-
-
-
-
-
-
+Theta1_grad = (1/m)*(D2'*A1);
+Theta2_grad = (1/m)*(D3'*A2);
 
 
 
