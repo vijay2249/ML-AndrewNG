@@ -21,7 +21,7 @@ grad = zeros(size(theta));
 
 s = X*theta;
 
-J = (1/m)*sum((-y.*log(s))-((1-y).*log(1-s)));
+J = (1/(2*m))*sum((s-y).^2);
 
 reg = (lambda/(2*m))*sum(theta(2:end).^2);
 
