@@ -41,18 +41,18 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+  Error = (X*Theta') - Y;
+  J = (1/2)*sum(sum(Error.^2.*R));
+  X_grad = (Error.*R)*Theta;
+  Theta_grad = (Error.*R)'*X;
 
-
-
-
-
-
-
-
-
-
-
-
+  
+  %%%%% ----------- Adding Regularization term
+  Reg_term_theta = (lambda/2)*sum(sum(Theta.^2));
+  Reg_term_x = (lambda/2)*sum(sum(X.^2));
+  J = J + Reg_term_theta + Reg_term_x;
+  X_grad = X_grad + lambda*X;
+  Theta_grad = Theta_grad + lambda*Theta;
 
 
 % =============================================================
