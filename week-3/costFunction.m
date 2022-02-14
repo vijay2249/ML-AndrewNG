@@ -21,12 +21,10 @@ grad = zeros(size(theta));
 %
 
 
-% j = (1/m)*(sum((-y)*(log(sigmoid(X*theta)))-(1-y)*(log(1-sigmoid(X*theta)))))
-%grad = (1/m)*X'*(sigmoid(X*theta)-y)
-temp = X*theta;
-s = sigmoid(temp);
-J = (1/m)*sum((-y.*log(s))-((1-y).*(log(1-s))));
-grad = (1/m)*X'*(s-y);
+  temp = X*theta;
+  s = sigmoid(temp);
+  J = (1/m)*sum((-y.*log(s))-((1-y).*(log(1-s))));
+  grad = (1/m)*X'*(s-y);
 
 
 
