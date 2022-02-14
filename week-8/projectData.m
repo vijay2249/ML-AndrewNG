@@ -22,7 +22,6 @@ Z = zeros(size(X, 1), K);
 %    Z(i) = X(i,:) * U(:, K);
 %  endfor
 
-  %X_rec = Z*U(:, 1:K)';
   Z = X*U(:, 1:K);
 
 
